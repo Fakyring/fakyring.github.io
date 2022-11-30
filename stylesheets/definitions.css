@@ -1,0 +1,38 @@
+article {
+    margin-top: 1em;
+}
+
+.definitions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-family: "Open Sans", sans-serif;
+    margin: 10px auto;
+    width: 95%;
+    text-align: left;
+    padding: 10px 0;
+    row-gap: 10px;
+}
+
+.definitions div {
+    border-radius: 10px;
+    flex-basis: 32%;
+    background: rgb(41, 41, 56);
+}
+
+.definitions div:hover {
+    background: rgb(61, 61, 78);
+}
+
+dt {
+    text-align: center;
+    font-weight: bolder;
+}
+
+dd {
+    margin-left: 0;
+    margin-top: 0.1em;
+    padding: 5px;
+    font-size: 90%;
+    text-align: justify;
+}

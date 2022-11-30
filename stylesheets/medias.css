@@ -1,0 +1,71 @@
+@media screen and (min-width: 1980px) {
+    .types {
+        font-size: 1.1vw;
+    }
+
+    .container a img {
+        height: 18vw;
+        width: 18vw;
+    }
+
+    .container a:before {
+        font-size: 1.1vw;
+    }
+
+    footer {
+        font-size: 1.1vw;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .navigation a {
+        font-size: 1.8vw;
+    }
+}
+
+@media screen and (max-width: 970px) {
+    .definitions div {
+        flex-basis: 45%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .container a {
+        scroll-snap-align: center;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .definitions {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .definitions div {
+        flex-basis: 90%;
+    }
+
+    #arrowUp {
+        visibility: hidden;
+    }
+
+    .navigation a {
+        font-size: 3.0vw;
+    }
+
+    .navigation.main, header > div {
+        display: none;
+    }
+
+    .navigation.burger {
+        visibility: visible;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .navigation.burger a {
+        font-size: 13px;
+        line-height: 30px;
+    }
+}
