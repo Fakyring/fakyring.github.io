@@ -42,11 +42,6 @@ window.onload = function () {
     onresize = function () {
         if (mediaQuery.matches)
             burger_check.checked = false;
-        if (body.offsetHeight >= window.innerHeight) {
-            body.style.overflowY = "scroll";
-        } else {
-            body.style.overflowY = "hidden";
-        }
     }
 
     //Hide burger menu and images info if clicked out of them

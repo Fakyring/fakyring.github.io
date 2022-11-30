@@ -3,7 +3,6 @@ body {
     color: whitesmoke;
     background: rgb(51, 51, 68);
     cursor: default;
-    overflow-y: hidden;
 }
 
 .container {
