@@ -35,12 +35,6 @@
     }
 }
 
-@media screen and (max-height: 900px) {
-    body{
-        overflow-y: auto;
-    }
-}
-
 @media screen and (max-width: 850px) {
     .definitions {
         font-size: 14px;

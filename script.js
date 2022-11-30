@@ -5,12 +5,12 @@ window.onload = function () {
     let burger_check = document.getElementById("menu");
     let mediaQuery = window.matchMedia('(min-width: 660px)');
     let items = document.querySelectorAll(".container a");
+    let body = document.body;
     items = Array.from(items);
     //Set "changeInformationStatus" function to click event on images
     for (let i = 0; i < items.length; i++) {
         items[i].onclick = changeInformationStatus;
     }
-
     //Adding header and footer
     addElement("header");
     addElement("footer");
@@ -42,6 +42,11 @@ window.onload = function () {
     onresize = function () {
         if (mediaQuery.matches)
             burger_check.checked = false;
+        if (body.offsetHeight >= window.innerHeight) {
+            body.style.overflowY = "scroll";
+        } else {
+            body.style.overflowY = "hidden";
+        }
     }
 
     //Hide burger menu and images info if clicked out of them
