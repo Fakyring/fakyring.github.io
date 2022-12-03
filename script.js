@@ -2,6 +2,7 @@ window.onload = function () {
     let container = document.querySelector(".container");
     let nav = document.getElementById("navigation");
     let arrow = document.getElementById("arrowUp");
+    let secret = document.getElementById("secret");
     let burger_check = document.getElementById("menu");
     let mediaQuery = window.matchMedia('(min-width: 660px)');
     let items = document.querySelectorAll(".container a");
@@ -14,6 +15,7 @@ window.onload = function () {
     //Adding header and footer
     addElement("header");
     addElement("footer");
+    let counter = 0;
 
     function addElement(tag) {
         let xhr = new XMLHttpRequest();
@@ -35,6 +37,14 @@ window.onload = function () {
                 isInViewport(nav) ? arrow.style.display = "none" : arrow.style.display = "block";
             });
             document.getElementById("site-name").innerHTML = document.title;
+        } else {
+            secret = document.getElementById("secret");
+            secret.onclick = function () {
+                counter++;
+                if (counter === 5) {
+                    document.getElementsByClassName("hidden")[0].classList.remove("hidden");
+                }
+            }
         }
     }
 
@@ -61,6 +71,7 @@ window.onload = function () {
         if (!e.deltaY) {
             return;
         }
+        e.preventDefault();
         container.scrollLeft += e.deltaY * 1.5;
     });
 }
