@@ -64,10 +64,21 @@ window.onload = async () => {
             return e.path.includes("img");
         });
     }
-    
+
     let images = document.querySelectorAll(".rover_images a img");
     let images_div = document.getElementById("rover_images");
-    
+    images_div.onscroll = function () {
+        for (let i = 0; i < images.length; i++) {
+            let bound = images[i].getBoundingClientRect();
+            let parentBound = images_div.getBoundingClientRect();
+            bound.left = bound.left - parentBound.left;
+            if (bound.left > 0 && bound.left < images_div.offsetWidth) {
+                counter = i;
+                return;
+            }
+        }
+    }
+
     //Scrolling images using halves of div
     images_div.onclick = function (e) {
         let center = this.offsetWidth / 2;
@@ -81,10 +92,9 @@ window.onload = async () => {
         } else if (counter >= images.length) {
             counter = 0;
         }
-        console.log(counter);
         images[counter].scrollIntoView();
     }
-    
+
     //Adding images from git repos
     for (let i = 0; i < rovers.length; i++) {
         rovers[i].onclick = function () {
@@ -94,12 +104,34 @@ window.onload = async () => {
                 return e.path.includes("rovers/" + name);
             });
             images_div.innerHTML = "";
-            for (let j = 0; j < rover_imgs.length; j++) {
-                let rover = document.createElement("img");
+            for (let j = 2; j < rover_imgs.length; j++) {
+                let roverImg = document.createElement("img");
+                let rover = document.createElement("a");
+                roverImg.src = rover_imgs[j].path;
+                rover.appendChild(roverImg);
                 images_div.appendChild(rover);
             }
+            let tmpA = document.createElement("a");
+            let info = document.createElement("p");
+            images_div.appendChild(tmpA);
+            readTextFile(rover_imgs[1].path);
             images = document.querySelectorAll(".rover_images a img");
         }
+    }
+    rovers[0].click();
+
+    function readTextFile(file) {
+        let rawFile = new XMLHttpRequest();
+        rawFile.open("GET", file, false);
+        rawFile.onreadystatechange = function () {
+            if (rawFile.readyState === 4) {
+                if (rawFile.status === 200 || rawFile.status === 0) {
+                    let allText = rawFile.responseText;
+                    information.innerHTML = allText;
+                }
+            }
+        }
+        rawFile.send(null);
     }
 
     //------------------------------Burger Menu------------------------------
