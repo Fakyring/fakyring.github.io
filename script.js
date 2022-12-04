@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload = async () => {
     let container = document.querySelector(".container");
     let nav = document.getElementById("navigation");
     let arrow = document.getElementById("arrowUp");
@@ -12,10 +12,11 @@ window.onload = function () {
     for (let i = 0; i < items.length; i++) {
         items[i].onclick = changeInformationStatus;
     }
-    //Adding header and footer
+
+    //------------------------------Adding header and footer------------------------------
     addElement("header");
     addElement("footer");
-    let counter = 0;
+    let counter = 0, secretCounter = 0;
 
     function addElement(tag) {
         let xhr = new XMLHttpRequest();
@@ -40,21 +41,75 @@ window.onload = function () {
         } else {
             secret = document.getElementById("secret");
             secret.onclick = function () {
-                counter++;
-                if (counter === 5) {
+                secretCounter++;
+                if (secretCounter === 5) {
                     document.getElementsByClassName("hidden")[0].classList.remove("hidden");
                 }
             }
         }
     }
 
+    //------------------------------Rovers------------------------------
+    let rovers = document.getElementsByClassName("rover");
+    let information = document.getElementById("info");
+
+    //Getting images from git repos
+    let response = await fetch(
+        "https://api.github.com/repos/Fakyring/fakyring.github.io/git/trees/master?recursive=1"
+    );
+    let imagesFiles;
+    if (response.ok) {
+        let files = await response.json();
+        imagesFiles = files.tree.filter(function (e) {
+            return e.path.includes("img");
+        });
+    }
+    
+    let images = document.querySelectorAll(".rover_images a img");
+    let images_div = document.getElementById("rover_images");
+    
+    //Scrolling images using halves of div
+    images_div.onclick = function (e) {
+        let center = this.offsetWidth / 2;
+        if (e.offsetX < center) {
+            counter--;
+        } else if (e.offsetX > center) {
+            counter++;
+        }
+        if (counter < 0) {
+            counter = images.length - 1;
+        } else if (counter >= images.length) {
+            counter = 0;
+        }
+        console.log(counter);
+        images[counter].scrollIntoView();
+    }
+    
+    //Adding images from git repos
+    for (let i = 0; i < rovers.length; i++) {
+        rovers[i].onclick = function () {
+            counter = 0;
+            let name = this.id;
+            let rover_imgs = imagesFiles.filter(function (e) {
+                return e.path.includes("rovers/" + name);
+            });
+            images_div.innerHTML = "";
+            for (let j = 0; j < rover_imgs.length; j++) {
+                let rover = document.createElement("img");
+                images_div.appendChild(rover);
+            }
+            images = document.querySelectorAll(".rover_images a img");
+        }
+    }
+
+    //------------------------------Burger Menu------------------------------
     //Hide burger menu if changed window size
     onresize = function () {
         if (mediaQuery.matches)
             burger_check.checked = false;
     }
 
-    //Hide burger menu and images info if clicked out of them
+    //Hide burger menu and images info.txt if clicked out of them
     onclick = function (e) {
         if (burger_check.checked === true)
             if (!e.target.classList.contains("bg_item")) {
@@ -66,7 +121,6 @@ window.onload = function () {
             }
         }
     }
-
     container.addEventListener("wheel", (e) => {
         if (!e.deltaY) {
             return;

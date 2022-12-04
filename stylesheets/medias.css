@@ -21,6 +21,10 @@
     .navigation a {
         font-size: 1.8vw;
     }
+
+    main {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 970px) {
@@ -33,11 +37,43 @@
     .container a {
         scroll-snap-align: center;
     }
+
+    .types a img {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 850px) {
     .definitions {
         font-size: 14px;
+    }
+
+    .rovers {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .rovers_list {
+        width: calc(100% - 40px);
+        height: 100px;
+        max-width: none;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        flex-direction: row;
+        margin-bottom: 10px;
+    }
+
+    .rovers_list img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .rover_images {
+        margin: 0;
+    }
+
+    .rover_images {
+        width: 75%;
     }
 }
 
