@@ -39,7 +39,7 @@ main {
     display: flex;
     flex-direction: column;
     min-width: 100px;
-    max-width: 300px;
+    max-width: 200px;
     gap: 20px;
     height: 400px;
     overflow-y: scroll;
@@ -114,9 +114,9 @@ main {
 
 .info {
     padding: 10px;
-    margin-left: 5px;
-    margin-top: 0;
+    margin-top: 5px;
     text-align: justify;
+    width: fit-content;
     height: fit-content;
     border-radius: 20px;
     background: #494964;

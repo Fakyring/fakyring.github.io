@@ -2,7 +2,6 @@ window.onload = async () => {
     let container = document.querySelector(".container");
     let nav = document.getElementById("navigation");
     let arrow = document.getElementById("arrowUp");
-    let secret = document.getElementById("secret");
     let burger_check = document.getElementById("menu");
     let mediaQuery = window.matchMedia('(min-width: 660px)');
     let items = document.querySelectorAll(".container a");
@@ -16,7 +15,7 @@ window.onload = async () => {
     //------------------------------Adding header and footer------------------------------
     addElement("header");
     addElement("footer");
-    let counter = 0, secretCounter = 0;
+    let counter = 0;
 
     function addElement(tag) {
         let xhr = new XMLHttpRequest();
@@ -38,15 +37,6 @@ window.onload = async () => {
                 isInViewport(nav) ? arrow.style.display = "none" : arrow.style.display = "block";
             });
             document.getElementById("site-name").innerHTML = document.title;
-        } else {
-            secret = document.getElementById("secret");
-            secret.onclick = function () {
-                secretCounter++;
-                if (secretCounter === 5) {
-                    document.getElementsByClassName("hidden")[0].classList.remove("hidden");
-                    document.getElementsByClassName("hidden")[0].classList.remove("hidden");
-                }
-            }
         }
     }
 
@@ -182,13 +172,4 @@ function changeInformationStatus() {
         this.classList.remove("hovered");
     else
         this.classList.add("hovered");
-}
-
-let map = {};
-onkeydown = function (e) {
-    if (e.key === "F") {
-        let login = prompt("Логин");
-        if (login === "admin")
-            document.getElementsByClassName("hidden")[0].classList.remove("hidden");
-    }
 }
