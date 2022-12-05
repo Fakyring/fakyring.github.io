@@ -142,6 +142,19 @@ footer img:hover {
     display: none;
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #c2c9d2;
+}
+::-webkit-scrollbar-button{
+    width: 10px;
+    height: 10px;
+}
 body::-webkit-scrollbar {
     display: none;
 }

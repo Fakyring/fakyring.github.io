@@ -44,6 +44,7 @@ window.onload = async () => {
                 secretCounter++;
                 if (secretCounter === 5) {
                     document.getElementsByClassName("hidden")[0].classList.remove("hidden");
+                    document.getElementsByClassName("hidden")[0].classList.remove("hidden");
                 }
             }
         }
@@ -107,6 +108,7 @@ window.onload = async () => {
             for (let j = 2; j < rover_imgs.length; j++) {
                 let roverImg = document.createElement("img");
                 let rover = document.createElement("a");
+                roverImg.style.maxWidth = images_div.offsetWidth / 1.5 + "px";
                 roverImg.src = rover_imgs[j].path;
                 rover.appendChild(roverImg);
                 images_div.appendChild(rover);
@@ -116,6 +118,8 @@ window.onload = async () => {
             images_div.appendChild(tmpA);
             readTextFile(rover_imgs[1].path);
             images = document.querySelectorAll(".rover_images a img");
+            counter = 0;
+            images[0].scrollIntoView();
         }
     }
     rovers[0].click();
@@ -139,6 +143,9 @@ window.onload = async () => {
     onresize = function () {
         if (mediaQuery.matches)
             burger_check.checked = false;
+        for (let i = 0; i < images.length; i++) {
+            images[i].style.maxWidth = images_div.offsetWidth / 1.5 + "px";
+        }
     }
 
     //Hide burger menu and images info.txt if clicked out of them
