@@ -40,6 +40,35 @@ window.onload = async () => {
         }
     }
 
+    //------------------------------Burger Menu------------------------------
+    //Hide burger menu if changed window size and change maximus width of rover images
+    onresize = function () {
+        if (mediaQuery.matches)
+            burger_check.checked = false;
+        for (let i = 0; i < images.length; i++) {
+            images[i].style.maxWidth = images_div.offsetWidth / 1.5 + "px";
+        }
+    }
+    //Hide burger menu and images info if clicked out of them
+    onclick = function (e) {
+        if (burger_check.checked === true)
+            if (!e.target.classList.contains("bg_item")) {
+                burger_check.checked = false;
+            }
+        if (!items.includes(e.target) && !items.includes(e.target.parentNode)) {
+            for (let i = 0; i < items.length; i++) {
+                items[i].classList.remove("hovered");
+            }
+        }
+    }
+    container.addEventListener("wheel", (e) => {
+        if (!e.deltaY) {
+            return;
+        }
+        e.preventDefault();
+        container.scrollLeft += e.deltaY * 1.5;
+    });
+    
     //------------------------------Rovers------------------------------
     let rovers = document.getElementsByClassName("rover");
     let information = document.getElementById("info");
@@ -127,36 +156,6 @@ window.onload = async () => {
         }
         rawFile.send(null);
     }
-
-    //------------------------------Burger Menu------------------------------
-    //Hide burger menu if changed window size
-    onresize = function () {
-        if (mediaQuery.matches)
-            burger_check.checked = false;
-        for (let i = 0; i < images.length; i++) {
-            images[i].style.maxWidth = images_div.offsetWidth / 1.5 + "px";
-        }
-    }
-
-    //Hide burger menu and images info.txt if clicked out of them
-    onclick = function (e) {
-        if (burger_check.checked === true)
-            if (!e.target.classList.contains("bg_item")) {
-                burger_check.checked = false;
-            }
-        if (!items.includes(e.target) && !items.includes(e.target.parentNode)) {
-            for (let i = 0; i < items.length; i++) {
-                items[i].classList.remove("hovered");
-            }
-        }
-    }
-    container.addEventListener("wheel", (e) => {
-        if (!e.deltaY) {
-            return;
-        }
-        e.preventDefault();
-        container.scrollLeft += e.deltaY * 1.5;
-    });
 }
 
 //Checks if main menu is in viewport
