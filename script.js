@@ -61,14 +61,15 @@ window.onload = async () => {
             }
         }
     }
-    container.addEventListener("wheel", (e) => {
-        if (!e.deltaY) {
-            return;
-        }
-        e.preventDefault();
-        container.scrollLeft += e.deltaY * 1.5;
-    });
-    
+    if (container)
+        container.addEventListener("wheel", (e) => {
+            if (!e.deltaY) {
+                return;
+            }
+            e.preventDefault();
+            container.scrollLeft += e.deltaY * 1.5;
+        });
+
     //------------------------------Rovers------------------------------
     let rovers = document.getElementsByClassName("rover");
     let information = document.getElementById("info");
