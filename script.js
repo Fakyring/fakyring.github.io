@@ -61,6 +61,7 @@ window.onload = async () => {
             }
         }
     }
+    //Change images size
     if (container)
         container.addEventListener("wheel", (e) => {
             if (!e.deltaY) {
@@ -100,22 +101,6 @@ window.onload = async () => {
         }
     }
 
-    //Scrolling images using halves of div
-    images_div.onclick = function (e) {
-        let center = this.offsetWidth / 2;
-        if (e.offsetX < center) {
-            counter--;
-        } else if (e.offsetX > center) {
-            counter++;
-        }
-        if (counter < 0) {
-            counter = images.length - 1;
-        } else if (counter >= images.length) {
-            counter = 0;
-        }
-        images[counter].scrollIntoView();
-    }
-
     //Adding images from git repos
     for (let i = 0; i < rovers.length; i++) {
         rovers[i].onclick = function () {
@@ -143,7 +128,8 @@ window.onload = async () => {
         }
     }
     rovers[0].click();
-
+    
+    //Get rover info
     function readTextFile(file) {
         let rawFile = new XMLHttpRequest();
         rawFile.open("GET", file, false);
@@ -156,6 +142,22 @@ window.onload = async () => {
             }
         }
         rawFile.send(null);
+    }
+
+    //Scrolling images using halves of div
+    images_div.onclick = function (e) {
+        let center = this.offsetWidth / 2;
+        if (e.offsetX < center) {
+            counter--;
+        } else if (e.offsetX > center) {
+            counter++;
+        }
+        if (counter < 0) {
+            counter = images.length - 1;
+        } else if (counter >= images.length) {
+            counter = 0;
+        }
+        images[counter].scrollIntoView();
     }
 }
 
